@@ -123,4 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'watermark' => [
+        'enabled' => (bool) env('SITE_WATERMARK_ENABLED', false),
+        'text' => env('SITE_WATERMARK_TEXT', 'Demo website'),
+    ],
+
 ];

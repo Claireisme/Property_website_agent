@@ -2,6 +2,8 @@
 
 @php
     $currentLocale = app()->getLocale();
+    $watermarkEnabled = (bool) config('app.watermark.enabled', false);
+    $watermarkText = trim((string) config('app.watermark.text', 'Demo website')) ?: 'Demo website';
 @endphp
 
 <!DOCTYPE html>
@@ -223,6 +225,33 @@
             font: inherit;
             font-size: 14px;
             font-weight: 700;
+        }
+
+        .site-watermark {
+            position: fixed;
+            inset: -10vh -10vw;
+            z-index: 2147483000;
+            display: grid;
+            grid-template-columns: repeat(6, minmax(180px, 1fr));
+            grid-auto-rows: 120px;
+            gap: 24px 20px;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: .68;
+        }
+
+        .site-watermark span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            color: rgba(17, 24, 39, .16);
+            font-size: clamp(20px, 2.2vw, 36px);
+            font-weight: 850;
+            line-height: 1;
+            white-space: nowrap;
+            transform: rotate(-45deg);
+            user-select: none;
         }
 
         .button,
@@ -3279,6 +3308,14 @@
             <span>Property services, valuations, lettings, and online enquiries.</span>
         </div>
     </footer>
+
+    @if ($watermarkEnabled)
+        <div class="site-watermark" aria-hidden="true">
+            @foreach (range(1, 96) as $index)
+                <span>{{ $watermarkText }}</span>
+            @endforeach
+        </div>
+    @endif
 
     <script>
         (() => {

@@ -26,4 +26,37 @@ class AgencyAdminFormTest extends TestCase
             ->assertSee('Bid increment ranges')
             ->assertSee('Add price range');
     }
+
+    public function test_site_watermark_can_be_enabled_from_configuration(): void
+    {
+        config([
+            'app.watermark.enabled' => true,
+            'app.watermark.text' => 'Demo website',
+        ]);
+
+        Agency::query()->create([
+            'name' => 'Test Agency',
+        ]);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('<div class="site-watermark" aria-hidden="true">', false)
+            ->assertSee('Demo website');
+    }
+
+    public function test_site_watermark_can_be_disabled_from_configuration(): void
+    {
+        config([
+            'app.watermark.enabled' => false,
+            'app.watermark.text' => 'Demo website',
+        ]);
+
+        Agency::query()->create([
+            'name' => 'Test Agency',
+        ]);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertDontSee('<div class="site-watermark" aria-hidden="true">', false);
+    }
 }
