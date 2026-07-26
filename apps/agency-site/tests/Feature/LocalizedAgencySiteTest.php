@@ -174,6 +174,7 @@ class LocalizedAgencySiteTest extends TestCase
         $this->get('/properties?category=commercial')
             ->assertOk()
             ->assertSee('Commercial Office')
+            ->assertSee('/properties/commercial-office" target="_blank" rel="noopener noreferrer"', false)
             ->assertDontSee('Residential Sale');
     }
 

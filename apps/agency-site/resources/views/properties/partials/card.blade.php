@@ -1,5 +1,5 @@
 <article class="card">
-    <a href="{{ \App\Support\LocaleUrl::route('properties.show', ['property' => $property]) }}">
+    <a href="{{ \App\Support\LocaleUrl::route('properties.show', ['property' => $property]) }}" target="_blank" rel="noopener noreferrer">
         <div class="photo">
             @if ($image = $property->images->first())
                 <img src="{{ $image->publicUrl($image->card_url ?: $image->original_url) }}" alt="{{ $image->caption ?: $property->localizedTitle() }}" loading="lazy" decoding="async">
