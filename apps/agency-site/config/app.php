@@ -124,8 +124,8 @@ return [
     ],
 
     'watermark' => [
-        'enabled' => (bool) env('SITE_WATERMARK_ENABLED', false),
-        'text' => env('SITE_WATERMARK_TEXT', 'Demo website'),
+        'enabled' => (bool) env('DEMO_WATERMARK_ENABLED', env('SITE_WATERMARK_ENABLED', false)),
+        'text' => env('DEMO_WATERMARK_TEXT', env('SITE_WATERMARK_TEXT', 'Demo website')),
     ],
 
 ];
