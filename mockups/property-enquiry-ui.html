@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Property enquiry UI mockup</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #111827;
+            --muted: #5b6472;
+            --line: #d9e1e8;
+            --surface: #f7f9fb;
+            --brand: #0f766e;
+            --brand-dark: #134e4a;
+            --accent: #c27803;
+            --soft-green: #eef7f5;
+            --soft-gold: #fff7e6;
+            --blue: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #eef2f4;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            min-height: 46px;
+            border: 0;
+            border-radius: 8px;
+            padding: 0 16px;
+            background: var(--brand);
+            color: #ffffff;
+            font-weight: 850;
+            cursor: default;
+        }
+
+        .mock-shell {
+            width: min(1420px, calc(100% - 40px));
+            margin: 28px auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 370px;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .desktop-page,
+        .phone-frame {
+            border: 1px solid #cdd8df;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 24px 60px rgba(17, 24, 39, .12);
+            overflow: hidden;
+        }
+
+        .topbar {
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, .96);
+        }
+
+        .nav {
+            min-height: 64px;
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--ink);
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .photo-hero {
+            padding: 22px 0 0;
+            background: #ffffff;
+        }
+
+        .shell {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .photo-browser {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 190px;
+            gap: 10px;
+            min-height: 410px;
+        }
+
+        .photo-main,
+        .photo-thumb {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #d7dee3;
+        }
+
+        .photo-main img,
+        .photo-thumb img,
+        .phone-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .photo-main {
+            min-height: 410px;
+        }
+
+        .photo-rail {
+            display: grid;
+            gap: 10px;
+            grid-template-rows: repeat(4, 1fr);
+        }
+
+        .photo-info {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            border-radius: 8px;
+            padding: 14px 16px;
+            background: linear-gradient(90deg, rgba(17, 24, 39, .84), rgba(17, 24, 39, .34));
+            color: #ffffff;
+        }
+
+        .photo-info strong {
+            display: block;
+            font-size: 32px;
+            line-height: 1.08;
+            letter-spacing: 0;
+        }
+
+        .photo-pill {
+            flex: 0 0 auto;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, .94);
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 850;
+        }
+
+        .band {
+            padding: 34px 0 44px;
+            background: #ffffff;
+        }
+
+        .property-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 380px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 22px;
+        }
+
+        .property-summary {
+            margin-bottom: 28px;
+            border-color: #dbe5ec;
+            background:
+                linear-gradient(180deg, #ffffff, #fbfdfc),
+                radial-gradient(circle at 100% 0%, rgba(15, 118, 110, .09), transparent 34%);
+            box-shadow: 0 16px 42px rgba(17, 24, 39, .08);
+        }
+
+        .summary-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge,
+        .status {
+            display: inline-flex;
+            align-items: center;
+            min-height: 38px;
+            border-radius: 999px;
+            padding: 0 13px;
+            font-size: 12px;
+            font-weight: 850;
+            line-height: 1;
+        }
+
+        .badge {
+            background: var(--brand);
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .status {
+            border: 1px solid rgba(15, 118, 110, .18);
+            background: #ffffff;
+            color: var(--brand-dark);
+        }
+
+        .tools {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tool-button {
+            width: 42px;
+            min-height: 42px;
+            padding: 0;
+            border: 1px solid #d4dee7;
+            background: rgba(255, 255, 255, .78);
+            color: #708090;
+            font-size: 12px;
+        }
+
+        .summary-address {
+            margin: 16px 0 0;
+            color: #111827;
+            font-size: 34px;
+            line-height: 1.16;
+            letter-spacing: 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            border: 1px solid rgba(15, 118, 110, .2);
+            border-radius: 8px;
+            padding: 16px;
+            background:
+                linear-gradient(135deg, rgba(15, 118, 110, .1), rgba(255, 255, 255, .98)),
+                #ffffff;
+            box-shadow: inset 5px 0 0 var(--brand), 0 12px 26px rgba(15, 78, 74, .08);
+        }
+
+        .label {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .price-line {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 7px;
+            line-height: 1;
+            font-weight: 950;
+        }
+
+        .price-line span {
+            color: var(--brand-dark);
+            font-size: 20px;
+        }
+
+        .price-line strong {
+            font-size: 42px;
+            letter-spacing: 0;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .fact {
+            display: grid;
+            gap: 6px;
+            min-height: 82px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, .86);
+        }
+
+        .fact strong {
+            font-size: 20px;
+            line-height: 1.1;
+            font-weight: 900;
+        }
+
+        .summary-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(217, 225, 232, .88);
+        }
+
+        .secondary {
+            border: 1px solid var(--line);
+            background: #ffffff;
+            color: var(--ink);
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            color: #111827;
+            font-size: 28px;
+            line-height: 1.18;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .copy-block {
+            display: grid;
+            gap: 14px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .feature {
+            display: inline-flex;
+            align-items: center;
+            min-height: 36px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0 13px;
+            background: #ffffff;
+            font-size: 14px;
+            font-weight: 750;
+        }
+
+        .contact-stack {
+            position: sticky;
+            top: 82px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .enquiry-card {
+            border-color: #cddfe2;
+            background:
+                linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%),
+                radial-gradient(circle at 0 0, rgba(194, 120, 3, .13), transparent 34%);
+            box-shadow: 0 18px 46px rgba(17, 24, 39, .12);
+        }
+
+        .enquiry-summary {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr) auto;
+            gap: 12px;
+            align-items: center;
+            min-height: 78px;
+            padding: 16px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .enquiry-summary:focus {
+            outline: 0;
+        }
+
+        .enquiry-summary:focus-visible {
+            outline: 3px solid rgba(15, 118, 110, .22);
+            outline-offset: 3px;
+        }
+
+        .enquiry-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .enquiry-summary-text {
+            min-width: 0;
+        }
+
+        .enquiry-summary-kicker {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .enquiry-summary strong {
+            display: block;
+            margin-top: 2px;
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.18;
+            letter-spacing: 0;
+        }
+
+        .enquiry-summary-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 1px solid rgba(15, 118, 110, .2);
+            border-radius: 999px;
+            padding: 8px 10px;
+            background: var(--soft-green);
+            color: var(--brand-dark);
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .summary-chevron {
+            display: inline-block;
+            font-size: 15px;
+            transition: transform .18s ease;
+        }
+
+        .action-close {
+            display: none;
+        }
+
+        .enquiry-disclosure[open] .enquiry-summary {
+            border-bottom: 1px solid #e2eaef;
+        }
+
+        .enquiry-disclosure[open] .summary-chevron {
+            transform: rotate(180deg);
+        }
+
+        .enquiry-disclosure[open] .action-open {
+            display: none;
+        }
+
+        .enquiry-disclosure[open] .action-close {
+            display: inline;
+        }
+
+        .enquiry-head {
+            display: grid;
+            gap: 10px;
+            padding: 18px 18px 14px;
+            border-bottom: 1px solid #e2eaef;
+            background: linear-gradient(135deg, rgba(15, 118, 110, .09), rgba(194, 120, 3, .07));
+        }
+
+        .agent-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .agent-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: var(--brand-dark);
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        .agent-line strong,
+        .agent-line span {
+            display: block;
+        }
+
+        .agent-line span {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .enquiry-head h3 {
+            margin: 2px 0 0;
+            font-size: 23px;
+            line-height: 1.18;
+            letter-spacing: 0;
+        }
+
+        .enquiry-head p {
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .quick-actions button {
+            min-height: 42px;
+            border: 1px solid rgba(15, 118, 110, .2);
+            background: #ffffff;
+            color: var(--brand-dark);
+            font-size: 13px;
+        }
+
+        .intent-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 6px;
+            padding: 14px 18px 0;
+        }
+
+        .intent-tabs button {
+            min-height: 38px;
+            padding: 0 8px;
+            border: 1px solid var(--line);
+            background: #ffffff;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .intent-tabs .active {
+            border-color: rgba(15, 118, 110, .32);
+            background: var(--soft-green);
+            color: var(--brand-dark);
+        }
+
+        .enquiry-form {
+            display: grid;
+            gap: 12px;
+            padding: 16px 18px 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .field label {
+            color: #334155;
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid #cad6df;
+            border-radius: 8px;
+            background: #ffffff;
+            color: var(--ink);
+            padding: 11px 12px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 96px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .consent {
+            border: 1px solid #e5edf2;
+            border-radius: 8px;
+            padding: 10px 11px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .send-button {
+            width: 100%;
+        }
+
+        .signal-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 1px;
+        }
+
+        .signal {
+            border-radius: 8px;
+            padding: 9px 10px;
+            background: var(--soft-gold);
+            color: #7c4a03;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .mini-map {
+            min-height: 284px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(90deg, transparent 49%, rgba(37, 99, 235, .18) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(15, 118, 110, .16) 50%, transparent 51%),
+                #edf3f6;
+            color: #64748b;
+            font-weight: 850;
+        }
+
+        .mini-card-body {
+            padding: 16px;
+        }
+
+        .phone-frame {
+            position: sticky;
+            top: 28px;
+            padding: 14px;
+            background: #111827;
+            border-color: #111827;
+            border-radius: 30px;
+        }
+
+        .phone-screen {
+            position: relative;
+            height: 760px;
+            border-radius: 22px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .phone-top {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            z-index: 4;
+            width: 92px;
+            height: 22px;
+            border-radius: 999px;
+            transform: translateX(-50%);
+            background: #111827;
+        }
+
+        .phone-photo {
+            height: 214px;
+            background: #d7dee3;
+        }
+
+        .phone-body {
+            padding: 18px 16px 150px;
+        }
+
+        .phone-body .badge {
+            min-height: 32px;
+            padding: 0 11px;
+            font-size: 11px;
+        }
+
+        .phone-title {
+            margin: 12px 0 0;
+            font-size: 25px;
+            line-height: 1.12;
+            letter-spacing: 0;
+        }
+
+        .phone-price {
+            margin-top: 12px;
+            color: var(--brand-dark);
+            font-size: 30px;
+            font-weight: 950;
+            line-height: 1;
+        }
+
+        .phone-facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .phone-fact {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .phone-fact strong,
+        .phone-fact span {
+            display: block;
+        }
+
+        .phone-fact strong {
+            font-size: 19px;
+        }
+
+        .phone-fact span {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .phone-copy {
+            display: grid;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .phone-copy .line {
+            height: 10px;
+            border-radius: 999px;
+            background: #e7edf1;
+        }
+
+        .phone-copy .line.short {
+            width: 68%;
+        }
+
+        .mobile-sheet {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 74px;
+            z-index: 2;
+            border: 1px solid #cddfe2;
+            border-radius: 18px 18px 8px 8px;
+            background: #ffffff;
+            box-shadow: 0 -18px 42px rgba(17, 24, 39, .18);
+        }
+
+        .sheet-handle {
+            width: 52px;
+            height: 5px;
+            border-radius: 999px;
+            margin: 10px auto 8px;
+            background: #d5dde4;
+        }
+
+        .sheet-content {
+            padding: 0 14px 14px;
+        }
+
+        .sheet-title {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.18;
+        }
+
+        .sheet-grid {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .sheet-grid input {
+            padding: 10px 11px;
+        }
+
+        .sheet-grid textarea {
+            min-height: 70px;
+            padding: 10px 11px;
+        }
+
+        .mobile-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: 74px 74px minmax(0, 1fr);
+            gap: 8px;
+            padding: 10px 12px 14px;
+            border-top: 1px solid var(--line);
+            background: rgba(255, 255, 255, .96);
+            backdrop-filter: blur(12px);
+        }
+
+        .mobile-bottom button {
+            min-height: 48px;
+            padding: 0 10px;
+            font-size: 13px;
+        }
+
+        .mobile-bottom .outline {
+            border: 1px solid var(--line);
+            background: #ffffff;
+            color: var(--ink);
+        }
+
+        @media (max-width: 1180px) {
+            .mock-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-frame {
+                position: static;
+                width: min(390px, 100%);
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 920px) {
+            .property-layout,
+            .photo-browser,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-rail {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-rows: 86px;
+            }
+
+            .contact-stack {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="mock-shell">
+        <section class="desktop-page" aria-label="Desktop property detail mockup">
+            <header class="topbar">
+                <nav class="nav">
+                    <div class="brand">Example Estate Agents</div>
+                    <div class="links">
+                        <span>Properties</span>
+                        <span>Valuation</span>
+                        <span>Mortgages</span>
+                        <span>Contact</span>
+                    </div>
+                </nav>
+            </header>
+
+            <section class="photo-hero">
+                <div class="shell">
+                    <div class="photo-browser">
+                        <div class="photo-main">
+                            <img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_rathmines.jpg" alt="Property exterior">
+                            <div class="photo-info">
+                                <strong>Elegant red-brick home in Rathmines</strong>
+                                <span class="photo-pill">Browse all 18 photos</span>
+                            </div>
+                        </div>
+                        <div class="photo-rail">
+                            <div class="photo-thumb"><img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_extra_17.jpg" alt="Living room"></div>
+                            <div class="photo-thumb"><img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_extra_03.jpg" alt="Kitchen"></div>
+                            <div class="photo-thumb"><img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_extra_31-2.jpg" alt="Bedroom"></div>
+                            <div class="photo-thumb"><img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_extra_15-3.jpg" alt="Garden"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="band">
+                <div class="shell property-layout">
+                    <article>
+                        <div class="card property-summary">
+                            <div class="card-body">
+                                <div class="summary-top">
+                                    <div class="chip-row">
+                                        <span class="badge">For sale</span>
+                                        <span class="status">Available</span>
+                                    </div>
+                                    <div class="tools" aria-label="Property tools">
+                                        <button class="tool-button" type="button">Save</button>
+                                        <button class="tool-button" type="button">Print</button>
+                                        <button class="tool-button" type="button">Share</button>
+                                    </div>
+                                </div>
+
+                                <h1 class="summary-address">14 Leinster Road, Rathmines, Dublin 6</h1>
+
+                                <div class="summary-grid">
+                                    <div class="price-card">
+                                        <span class="label">Asking price</span>
+                                        <div class="price-line">
+                                            <span>EUR</span>
+                                            <strong>845,000</strong>
+                                        </div>
+                                        <p style="margin-top: 10px; font-size: 13px;">EUR 7,680 per m2</p>
+                                    </div>
+
+                                    <div class="facts-grid">
+                                        <div class="fact">
+                                            <span class="label">Bedrooms</span>
+                                            <strong>3</strong>
+                                        </div>
+                                        <div class="fact">
+                                            <span class="label">Bathrooms</span>
+                                            <strong>2</strong>
+                                        </div>
+                                        <div class="fact">
+                                            <span class="label">Area</span>
+                                            <strong>110 m2</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="summary-actions">
+                                    <button type="button">Enquire</button>
+                                    <button class="secondary" type="button">Book viewing</button>
+                                    <button class="secondary" type="button">Mortgage info</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Description</h2>
+                        <div class="copy-block">
+                            <p>A carefully presented period home close to village amenities, transport links, schools, and city-centre routes.</p>
+                            <p>The layout combines bright reception space, a modern kitchen, three bedrooms, and a private rear garden suited to everyday family life.</p>
+                        </div>
+
+                        <div class="feature-list">
+                            <span class="feature">Gas fired central heating</span>
+                            <span class="feature">Private garden</span>
+                            <span class="feature">On-street parking</span>
+                            <span class="feature">Excellent transport links</span>
+                        </div>
+                    </article>
+
+                    <aside class="contact-stack" aria-label="Property contact panel mockup">
+                        <details class="card enquiry-card enquiry-disclosure">
+                            <summary class="enquiry-summary">
+                                <div class="agent-avatar">FM</div>
+                                <span class="enquiry-summary-text">
+                                    <span class="enquiry-summary-kicker">Interested in this property?</span>
+                                    <strong>Send Fiona a message or request a viewing</strong>
+                                </span>
+                                <span class="enquiry-summary-action">
+                                    <span class="action-open">Open</span>
+                                    <span class="action-close">Close</span>
+                                    <span class="summary-chevron">⌄</span>
+                                </span>
+                            </summary>
+
+                            <div class="enquiry-head">
+                                <h3>Contact Fiona Murray</h3>
+                                <p>Ask a question, request a viewing, or choose a callback for this listing.</p>
+                                <div class="quick-actions">
+                                    <button type="button">Call agent</button>
+                                    <button type="button">Email agent</button>
+                                </div>
+                            </div>
+
+                            <div class="intent-tabs" aria-label="Enquiry type">
+                                <button class="active" type="button">Question</button>
+                                <button type="button">Viewing</button>
+                                <button type="button">Callback</button>
+                            </div>
+
+                            <form class="enquiry-form" action="#" method="post">
+                                <div class="field">
+                                    <label for="mock-name">Name</label>
+                                    <input id="mock-name" value="Claire O'Brien">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="field">
+                                        <label for="mock-email">Email</label>
+                                        <input id="mock-email" value="claire@example.com">
+                                    </div>
+                                    <div class="field">
+                                        <label for="mock-phone">Phone</label>
+                                        <input id="mock-phone" value="+353 87 000 0000">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="mock-message">Message</label>
+                                    <textarea id="mock-message">Hi, I am interested in 14 Leinster Road. Could you send more details and available viewing times?</textarea>
+                                </div>
+
+                                <div class="consent">Your details are used only to respond to this property enquiry. Marketing consent can be requested separately later.</div>
+
+                                <button class="send-button" type="button">Send enquiry</button>
+
+                                <div class="signal-row">
+                                    <div class="signal">Usually replies same day</div>
+                                    <div class="signal">Viewing slots available</div>
+                                </div>
+                            </form>
+                        </details>
+
+                        <div class="card">
+                            <div class="mini-map">Map preview</div>
+                            <div class="mini-card-body">
+                                <h2 style="font-size: 21px;">Location</h2>
+                                <p>Rathmines, Dublin 6, Ireland</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </section>
+
+        <aside class="phone-frame" aria-label="Mobile property detail mockup">
+            <div class="phone-screen">
+                <div class="phone-top"></div>
+                <div class="phone-photo">
+                    <img src="../apps/agency-site/storage/app/public/properties/demo/prop_demo_rathmines.jpg" alt="Mobile property hero">
+                </div>
+                <div class="phone-body">
+                    <span class="badge">For sale</span>
+                    <h2 class="phone-title">14 Leinster Road, Rathmines</h2>
+                    <div class="phone-price">EUR 845,000</div>
+                    <div class="phone-facts">
+                        <div class="phone-fact"><strong>3</strong><span>Beds</span></div>
+                        <div class="phone-fact"><strong>2</strong><span>Baths</span></div>
+                        <div class="phone-fact"><strong>110</strong><span>m2</span></div>
+                    </div>
+                    <div class="phone-copy" aria-hidden="true">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line short"></div>
+                    </div>
+                </div>
+
+                <div class="mobile-sheet">
+                    <div class="sheet-handle"></div>
+                    <div class="sheet-content">
+                        <h3 class="sheet-title">Send an enquiry</h3>
+                        <div class="sheet-grid">
+                            <input value="Claire O'Brien" aria-label="Name">
+                            <input value="claire@example.com" aria-label="Email">
+                            <textarea aria-label="Message">I would like to arrange a viewing.</textarea>
+                            <button type="button">Send enquiry</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-bottom">
+                    <button class="outline" type="button">Call</button>
+                    <button class="outline" type="button">Email</button>
+                    <button type="button">I'm interested</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>
